@@ -1,0 +1,30 @@
+extract_task:
+  description: "Read the file at {FILE_PATH} and list all events."
+  expected_output: "A bulleted list of tasks and times."
+  agent: intake_agent
+
+scheduling_task:
+  description: >
+    Create a professional daily schedule based on the extracted tasks.
+    Use a 'Spring' theme with Green and Purple colors.
+    
+    Structure:
+    1. A Title Header.
+    2. A Daily Table with columns [Time, Activity, Category, Priority] and include the day of the week.
+    3. Use Green emojis for productivity (🌿, ✅, 🍏) and Purple for social/health (💜, 🍇).
+    4. Highlight 'High Priority' tasks in Bold and Green.
+  expected_output: >
+    A Markdown document styled as follows:
+    - Title: 🌿 Your Spring Daily Schedule
+    - Table: Standard Markdown table with alignment.
+    - Important Notes: High Priority tasks in  bold.
+    - Conflict Alerts: Highlight them in a visible color different from Important Notes.
+  output_file: "outputs/intermediate_schedule.md"
+  agent: scheduler_agent
+
+
+funky_task:
+  description: "Take the generated schedule from the previous task and infuse it with uplifting astral energy. Keep the Markdown table format and add motivating, playful touches that inspire confidence and joy."
+  expected_output: "An updated Markdown table schedule with motivational astral notes, uplifting check-ins, and gentle fun moments woven into the existing structure."
+  agent: funky_agent
+  output_file: "outputs/final_schedule.md"
