@@ -1,24 +1,30 @@
 extract_task:
-  description: "Read the file at {FILE_PATH} and list all events."
-  expected_output: "A bulleted list of tasks and times."
-  agent: intake_agent
+  description: "Read the file at {FILE_PATH} and list all events grouped by day. Include separate sections for Tuesday, Wednesday, Friday, and any other weekday mentioned."
+  expected_output: "A structured bulleted list of tasks and times grouped by weekday."
+  agent: analyzer_agent
 
 scheduling_task:
   description: >
-    Create a professional daily schedule based on the extracted tasks.
-    Use a 'Spring' theme with Green and Purple colors.
+    Create a beautiful, professional daily schedule based on the extracted tasks.
+    Use a fresh neutral palette with soft green and muted stone accents that remain visible on dark backgrounds.
     
     Structure:
-    1. A Title Header.
-    2. A Daily Table with columns [Time, Activity, Category, Priority] and include the day of the week.
-    3. Use Green emojis for productivity (🌿, ✅, 🍏) and Purple for social/health (💜, 🍇).
-    4. Highlight 'High Priority' tasks in Bold and Green.
+    1. A Title Header with a calm and fresh tone.
+    2. One daily schedule section for each weekday found in the agenda.
+    3. Each section should include a Daily Table with columns [Time, Activity, Category, Priority].
+    4. Use subtle fresh emojis for productivity and balance (🌿, ✅, 🍃, 🪴).
+    5. Use text accents like "Soft Sage", "Muted Stone", and "Dusk Stone" to convey the theme.
+    6. Highlight 'High Priority' tasks in bold and with dark-friendly, high-contrast wording.
+    7. If two events overlap, remove the lower-priority/conflicting event from the schedule entirely for the day and propose an alternate time for it if possible. Add a short note explaining the cancellation and the reason.
   expected_output: >
     A Markdown document styled as follows:
-    - Title: 🌿 Your Spring Daily Schedule
+    - Title: 🌿 Your Fresh Daily Schedule
+    - Separate tables for each weekday that appears in the agenda.
     - Table: Standard Markdown table with alignment.
-    - Important Notes: High Priority tasks in  bold.
-    - Conflict Alerts: Highlight them in a visible color different from Important Notes.
+    - Important Notes: High Priority tasks in bold and styled with fresh neutral, dark-friendly highlights.
+    - Conflict Alerts: Display with calm, balanced emphasis using wording that is visible on dark backgrounds and keep canceled items out of the confirmed table.
+    - If a conflicting event is removed, add a short cancellation note explaining which event was canceled and why.
+    - Use a fresh neutral wording throughout the schedule to make the output feel clean, calm, grounded, and dark-mode friendly.
   output_file: "outputs/intermediate_schedule.md"
   agent: scheduler_agent
 
@@ -28,3 +34,10 @@ funky_task:
   expected_output: "An updated Markdown table schedule with motivational astral notes, uplifting check-ins, and gentle fun moments woven into the existing structure."
   agent: funky_agent
   output_file: "outputs/final_schedule.md"
+
+
+# custom_task:
+#   description: #TODO  
+#   expected_output: #TODO
+#   agent: custom_agent
+#   output_file: "outputs/custom_schedule.md"

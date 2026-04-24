@@ -1,17 +1,19 @@
 import os
+from dotenv import load_dotenv
 from crewai import Agent, Task, Crew, LLM
 from crewai_tools import FileReadTool
 import yaml
 from IPython.display import Markdown, display
 
-# 1. SETUP: Student tweaks these!
+# Load environment variables from the .env file at project root.
+# Uncomment if tracing enabeld or Options B (Gemini) is used.
+#load_dotenv()
+
 FILE_PATH = 'inputs/messy_agenda.txt'
 
-# 2. LLM Setup (GitHub Models / Gemini Backup)
-# Agents now use individual temperatures from their config
-# Defaults to GitHub, can be swapped easily
+# LLM Setup (GitHub Models / Gemini Backup)
 
-# Option A: GitHub (Default)
+#Option A: GitHub (Default)
 def create_llm(temperature):
     return LLM(
         model="github/gpt-4o-mini",
@@ -20,35 +22,39 @@ def create_llm(temperature):
     )
 
 # Option B: Gemini (Backup)
-# To switch, just comment out Option A and uncomment these lines:
+# To switch, just comment (CTRL + /) out Option A and uncomment these lines (CTRL + /):
+
 # def create_llm(temperature):
 #     return LLM(
-#         model="gemini/gemini-1.5-flash",
+#         model="gemini-flash-latest",
 #         temperature=temperature,
 #         api_key=os.environ.get("GEMINI_API_KEY")
 #     )
 
-# 3. TOOL: Ability to read the student's file
+# Read input file
 file_tool = FileReadTool(file_path=FILE_PATH)
 
-# 4. LOAD CONFIG & BUILD AGENTS
+# Load Agents Config & Build Agents
 with open('configs/agents.yaml', 'r') as f:
     agents_config = yaml.safe_load(f)
 
-intake_agent = Agent(config=agents_config['intake_agent'], tools=[file_tool], llm=create_llm(agents_config['intake_agent']['temperature']))
+analyzer_agent = Agent(config=agents_config['analyzer_agent'], tools=[file_tool], llm=create_llm(agents_config['analyzer_agent']['temperature']))
 scheduler_agent = Agent(config=agents_config['scheduler_agent'], llm=create_llm(agents_config['scheduler_agent']['temperature']))
 funky_agent = Agent(config=agents_config['funky_agent'], llm=create_llm(agents_config['funky_agent']['temperature']))
+#custom_agent = Agent(config=agents_config['custom_agent'], llm=create_llm(agents_config['custom_agent']['temperature'])) 
 
-# 5. LOAD TASKS CONFIG & BUILD TASKS
+# Load Tasks Config & Build Tasks
 with open('configs/tasks.yaml', 'r') as f:
     tasks_config = yaml.safe_load(f)
 
 agent_map = {
-    'intake_agent': intake_agent,
+    'analyzer_agent': analyzer_agent,
     'scheduler_agent': scheduler_agent,
     'funky_agent': funky_agent
+    #'custom_agent': custom_agent
 }
 
+# Build sequential tasks based on the config
 tasks = []
 for task_name, task_config in tasks_config.items():
     task_kwargs = {
@@ -63,10 +69,13 @@ for task_name, task_config in tasks_config.items():
 
 
 
-# 6. RUN THE CREW
-crew = Crew(agents=[intake_agent, scheduler_agent, funky_agent], tasks=tasks)
+# Run the crew
+# Add verbose=True to the Crew constructor to see detailed logs of each agent's actions and thoughts in the console.
+crew = Crew(agents=[analyzer_agent, scheduler_agent, funky_agent], tasks=tasks)
 result = crew.kickoff()
 
-# 7. VISUAL EXPERIENCE: Render the output
-print("--- RAW OUTPUT SAVED TO final_schedule.md ---")
+# Display results
+print("--- output saved to outputs/final_schedule.md ---")
+# print(str(result))
+# In notebook environments this will render nicely:
 display(Markdown(str(result)))

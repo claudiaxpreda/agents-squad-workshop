@@ -1,28 +1,47 @@
 ```markdown
-# 🌿 Your Spring Daily Schedule
+# 🌿 Your Fresh Daily Schedule
 
-| Time      | Activity                                   | Category         | Priority   |
-|-----------|--------------------------------------------|------------------|------------|
-| 7:00 AM   | Wake up                                    | 🌿 Productivity    |            |
-| **8:00 AM**   | **Dentist appointment**                    | 💜 Health          | **High**   |
-| 9:00 AM   | Go to school                               | 🌿 Productivity    |            |
-| 10:00 AM  | History class                              | 🌿 Productivity    |            |
-| 11:30 AM  | Finish school                              | 🌿 Productivity    |            |
-| 12:00 PM  | Do homeworks!!! (Important)                | 🌿 Productivity    | **High**   |
-| 1:00 PM   | History homeworks (not so important)      | 🌿 Productivity    |            |
-| 2:00 PM   | Hang out with friends after school         | 💜 Social          | **High**   |
-| **4:00 PM**   | **Gym**                                   | 💜 Health          | **High**   |
-| **4:30 PM**   | **Math tutor session**                    | 🌿 Productivity    | **High**   |
-| 6:00 PM   | Relax                                      | 💜 Health          |            |
-| 7:00 PM   | Call Grandma for her birthday              | 💜 Social          |            |
-| 8:00 PM   | Spend 3 hours on the Science Project      | 🌿 Productivity    | **High**   |
-| 10:30 PM  | Bedtime                                    | 💜 Health          |            |
+## Tuesday
+| Time         | Activity                             | Category         | Priority         |
+|--------------|-------------------------------------|-------------------|-------------------|
+| 7:00 am      | Wake up                             | Routine           | ✅                |
+| 8:00 am      | **Dentist appointment**             | Appointment       | **🌿 High Priority** |
+| 10:00 am     | History class                       | Class             | ✅                |
+| 11:30 am     | **Science Project**                 | Project           | **🌿 High Priority** |
+| 2:00 pm      | **Gym** (canceled)                 | Fitness           | **🌿 High Priority** |
+| 4:00 pm      | Soccer practice                     | Sports            | ✅                |
+| 4:30 pm      | **Math tutor session** (canceled)   | Tutoring          | **🌿 High Priority** |
+| 10:30 pm     | Bedtime                             | Routine           | ✅                |
 
-### Important Notes:
-- The **Dentist appointment** at 8:00 AM is prioritized over the gym.
-- The **Math tutor session** at 4:30 PM overlaps with soccer practice, so soccer practice is canceled for this day.
-- **Do homeworks!!!** is marked as **High Priority** as it is essential for success.
+**Cancellation Notes:**
+- Canceled **Gym** from 7:30 am due to overlapping **Dentist appointment** at 8:00 am. Suggested alternate time: Wednesday at 4:00 pm.
+- Canceled **Math tutor session** at 4:30 pm due to overlapping **Soccer practice**. Suggested alternate time: Wednesday at 3:00 pm.
 
-### Conflict Alerts:
-- Soccer practice has been canceled due to a scheduling conflict with the Math tutor session.
+---
+
+## Wednesday
+| Time         | Activity                             | Category         | Priority         |
+|--------------|-------------------------------------|-------------------|-------------------|
+| 7:00 am      | Wake up                             | Routine           | ✅                |
+| 8:00 am      | Go to school                        | Routine           | ✅                |
+| 2:00 pm      | **Do homework**                     | Homework          | **🌿 High Priority** |
+| 3:00 pm      | Math tutor session (alternate)      | Tutoring          | ✅                |
+| 4:00 pm      | **Gym** (alternate)                | Fitness           | **🌿 High Priority** |
+| 5:00 pm      | Hang out with friends               | Social            | **🌿 High Priority** |
+| 10:30 pm     | Bedtime                             | Routine           | ✅                |
+
+---
+
+## Friday
+| Time         | Activity                             | Category         | Priority         |
+|--------------|-------------------------------------|-------------------|-------------------|
+| 9:00 am      | Wake up (later)                    | Routine           | ✅                |
+| 11:00 am     | Do something fun                    | Leisure           | ✅                |
+| 2:00 pm      | Make sure all homework is ready     | Homework          | ✅                |
+| 4:00 pm      | **Gym** (canceled)                 | Fitness           | **🌿 High Priority** |
+| 4:00 pm      | **Dentist appointment** (canceled) | Appointment       | **🌿 High Priority** |
+| 10:30 pm     | Bedtime                             | Routine           | ✅                |
+
+**Cancellation Notes:**
+- Canceled **Gym** and **Dentist appointment** at 4:00 pm due to scheduling conflicts. Suggested alternate time for the **Dentist appointment**: Thursday at 4:00 pm.
 ```
